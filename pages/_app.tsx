@@ -17,6 +17,9 @@ import 'prismjs/themes/prism-coy.css'
 import 'styles/notion.css'
 
 // global style overrides for prism theme (optional)
+
+import { ThirdwebProvider } from "@thirdweb-dev/react";
+
 import 'styles/prism-theme.css'
 
 import * as React from 'react'
@@ -67,5 +70,18 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   }, [router.events])
 
-  return <Component {...pageProps} />
+  //return <Component {...pageProps} />
+
+  return (
+    <ThirdwebProvider
+      desiredChainId={1}
+      authConfig={{
+        // Set this to your domain to prevent signature malleability attacks.
+        domain: "example.com",
+        authUrl: "/api/auth",
+      }}
+    >
+      <Component {...pageProps} />
+    </ThirdwebProvider>
+  );
 }

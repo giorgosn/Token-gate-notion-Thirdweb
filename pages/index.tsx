@@ -2,7 +2,7 @@ import * as React from 'react'
 import { domain } from 'lib/config'
 import { resolveNotionPage } from 'lib/resolve-notion-page'
 import { NotionPage } from 'components'
-
+import { ConnectWallet } from "@thirdweb-dev/react";
 export const getStaticProps = async () => {
   try {
     const props = await resolveNotionPage(domain)
@@ -18,5 +18,5 @@ export const getStaticProps = async () => {
 }
 
 export default function NotionDomainPage(props) {
-  return <NotionPage {...props} />
+  return <><ConnectWallet /><NotionPage {...props} /></>
 }
